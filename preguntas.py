@@ -338,7 +338,7 @@ def pregunta_09():
                 contador = contador + 1
         respuesta_9.append((clave, contador))
 
-        respuesta_9 = dict(respuesta_9)
+    respuesta_9 = dict(respuesta_9)
 
     return respuesta_9
 

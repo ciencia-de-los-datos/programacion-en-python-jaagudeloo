@@ -12,6 +12,13 @@ Utilice el archivo `data.csv` para resolver las preguntas.
 
 """
 
+# Lectura del archivo
+with open("data.csv", "r") as file:
+    data = file.readlines()
+
+data = [line.replace("\n", "") for line in data]
+data = [line.split("\t") for line in data]
+
 
 def pregunta_01():
     """
@@ -21,7 +28,12 @@ def pregunta_01():
     214
 
     """
-    return
+    suma_col_2 = 0
+    for i in range(len(data)):
+        suma_col_2 += int(data[i][1])
+    respuesta_1 = suma_col_2
+
+    return respuesta_1
 
 
 def pregunta_02():
@@ -39,7 +51,13 @@ def pregunta_02():
     ]
 
     """
-    return
+    col_0 = [data[i][0] for i in range(len(data))]
+    letras_unique = sorted(list(set(col_0)))
+    respuesta_2 = []
+    for x in letras_unique:
+        respuesta_2.append((x,col_0.count(x)))
+
+    return respuesta_2
 
 
 def pregunta_03():
@@ -57,7 +75,20 @@ def pregunta_03():
     ]
 
     """
-    return
+    col_0 = [data[i][0] for i in range(len(data))]
+    col_1 = [int(data[i][1]) for i in range(len(data))]
+    letras_unique = sorted(list(set(col_0)))
+
+    respuesta_3 = []
+
+    for letter in letras_unique:
+        valor = 0
+        for i in range(len(data)):
+            if col_0[i] == letter:
+                valor = valor + col_1[i]
+        respuesta_3.append((letter, valor))
+
+    return respuesta_3
 
 
 def pregunta_04():
@@ -82,7 +113,15 @@ def pregunta_04():
     ]
 
     """
-    return
+    meses = [data[i][2][5:7] for i in range(len(data))]
+    respuesta_4 = []
+
+    for mes in meses:
+        respuesta_4.append((mes,meses.count(mes)))
+
+    respuesta_4 = sorted(list(set(respuesta_4)))
+    
+    return respuesta_4
 
 
 def pregunta_05():
@@ -100,7 +139,22 @@ def pregunta_05():
     ]
 
     """
-    return
+    col_0 = [data[i][0] for i in range(len(data))]
+    letras_unique = sorted(list(set(col_0)))
+    respuesta_5 = []
+
+    for letter in letras_unique:
+        maximo = min(col_1)
+        minimo = max(col_1)
+        for i in range(len(data)):
+            if col_0[i] == letter:
+                if col_1[i] > maximo:
+                    maximo = col_1[i]    
+                if col_1[i] < minimo:
+                    minimo = col_1[i]
+        respuesta_5.append((letter,maximo,minimo))
+
+    return respuesta_5
 
 
 def pregunta_06():
@@ -125,7 +179,39 @@ def pregunta_06():
     ]
 
     """
-    return
+    col_4 = []
+    col_4 = [data[i][4] for i in range(len(data))]
+    col_4 = [line.split(",") for line in col_4]
+
+    lista_col_4 = []
+    lista_col_4_keys = []
+    lista_col_4_values = []
+    respuesta_6 = []
+
+    for i in range(len(col_4)):
+        for sublista in range(len(col_4[i])):
+            lista_col_4.append(col_4[i][sublista])
+
+    for e in range(len(lista_col_4)):
+        lista_col_4_keys.append(lista_col_4[e][0:3])
+        lista_col_4_values.append(int(lista_col_4[e][4:]))
+
+    lista_col_4_keys = [line.replace(":", "") for line in lista_col_4_keys]
+
+    col_4_unique_keys = sorted(list(set(lista_col_4_keys)))
+
+    for key in col_4_unique_keys:
+        maximo = min(lista_col_4_values)
+        minimo = max(lista_col_4_values)
+        for i in range(len(lista_col_4)):
+            if lista_col_4_keys[i] == key:
+                if lista_col_4_values[i] > maximo:
+                    maximo = lista_col_4_values[i]
+                if lista_col_4_values[i] < minimo:
+                    minimo = lista_col_4_values[i]
+        respuesta_6.append((key, minimo, maximo))
+
+    return respuesta_6
 
 
 def pregunta_07():
@@ -149,7 +235,19 @@ def pregunta_07():
     ]
 
     """
-    return
+    col_0
+    col_1
+    num_unique = list(set(col_1))
+    respuesta_7 = []
+
+    for numero in num_unique:
+        letras_numero = []
+        for i in range(len(col_0)):
+            if col_1[i] == numero:
+                letras_numero.append(col_0[i])
+        respuesta_7.append((numero, letras_numero))
+
+    return respuesta_7
 
 
 def pregunta_08():
@@ -174,7 +272,19 @@ def pregunta_08():
     ]
 
     """
-    return
+
+    num_unique = list(set(col_1))
+    respuesta_8 = []
+
+    for numero in num_unique:
+        letras_numero = []
+        for i in range(len(col_0)):
+            if col_1[i] == numero:
+                letras_numero.append(col_0[i])
+        letras_numero = sorted(list(set(letras_numero)))
+        respuesta_8.append((numero, letras_numero))
+
+    return respuesta_8
 
 
 def pregunta_09():
@@ -197,8 +307,35 @@ def pregunta_09():
     }
 
     """
-    return
+    col_4 = [data[i][4] for i in range(len(data))]
+    col_4 = [line.split(",") for line in col_4]
 
+    lista_col_4 = []
+    lista_col_4_keys = []
+    lista_col_4_values = []
+    respuesta_9 = []
+
+    for i in range(len(col_4)):
+        for sublista in range(len(col_4[i])):
+            lista_col_4.append(col_4[i][sublista])
+
+    for e in range(len(lista_col_4)):
+        lista_col_4_keys.append(lista_col_4[e][0:3])
+        lista_col_4_values.append(int(lista_col_4[e][4:]))
+
+    lista_col_4_keys = [line.replace(":", "") for line in lista_col_4_keys]
+    col_4_unique_keys = sorted(list(set(lista_col_4_keys)))
+
+    for clave in col_4_unique_keys:
+        contador = 0
+        for i in range(len(lista_col_4_keys)):
+            if lista_col_4_keys[i] == clave:
+                contador = contador + 1
+        respuesta_9.append((clave, contador))
+
+        respuesta_9 = dict(respuesta_9)
+
+        return respuesta_9
 
 def pregunta_10():
     """
@@ -218,7 +355,16 @@ def pregunta_10():
 
 
     """
-    return
+    col_0 = [data[i][0] for i in range(len(data))]
+    col_3 = [data[i][3] for i in range(len(data))]
+    col_4 = [data[i][4] for i in range(len(data))]
+
+    respuesta_10 = []
+
+    for i in range(len(col_0)):
+        respuesta_10.append((col_0[i],col_3[i].count(',')+1,col_4[i].count(',')+1))
+
+    return respuesta_10
 
 
 def pregunta_11():
@@ -239,7 +385,30 @@ def pregunta_11():
 
 
     """
-    return
+    col_1 = [data[i][1] for i in range(len(data))]
+    col_3 = [data[i][3] for i in range(len(data))]
+
+    col_3 = [line.split(",") for line in col_3]
+
+    letras = []
+    respuesta_11 = []
+
+    for i in range(len(col_3)):
+        for letra in col_3[i]:
+            letras.append(letra)
+
+    letras_unique = sorted(list(set(letras)))
+
+    for letra in letras_unique:
+        contador = 0
+        for i in range(len(col_1)):
+            if col_3[i].count(letra)>0:
+                contador = contador + int(col_1[i])
+        respuesta_11.append((letra, contador))
+
+    respuesta_11 = dict(respuesta_11)
+
+    return respuesta_11
 
 
 def pregunta_12():
@@ -257,4 +426,22 @@ def pregunta_12():
     }
 
     """
-    return
+    col_0 = [data[i][0] for i in range(len(data))]
+    col_4 = [data[i][4] for i in range(len(data))]
+
+    col_4 = [line.split(",") for line in col_4]
+
+    letras_unique = sorted(list(set(col_0)))
+    respuesta_12 = []
+
+    for letra in letras_unique:
+        contador = 0
+        for i in range(len(col_0)):
+            for e in range(len(col_4[i])):
+                if col_0[i] == letra:
+                    contador = contador + int(col_4[i][e][4:])
+        respuesta_12.append((letra,contador))
+
+    respuesta_12 = dict(respuesta_12)
+
+    return respuesta_12

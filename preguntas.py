@@ -340,7 +340,7 @@ def pregunta_09():
 
         respuesta_9 = dict(respuesta_9)
 
-        return respuesta_9
+    return respuesta_9
 
 def pregunta_10():
     """

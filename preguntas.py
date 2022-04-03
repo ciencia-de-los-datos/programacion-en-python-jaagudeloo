@@ -29,6 +29,7 @@ def pregunta_01():
 
     """
     suma_col_2 = 0
+    
     for i in range(len(data)):
         suma_col_2 += int(data[i][1])
     respuesta_1 = suma_col_2

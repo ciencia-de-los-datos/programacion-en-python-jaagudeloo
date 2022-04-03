@@ -29,7 +29,7 @@ def pregunta_01():
 
     """
     suma_col_2 = 0
-    
+
     for i in range(len(data)):
         suma_col_2 += int(data[i][1])
     respuesta_1 = suma_col_2
@@ -55,6 +55,7 @@ def pregunta_02():
     col_0 = [data[i][0] for i in range(len(data))]
     letras_unique = sorted(list(set(col_0)))
     respuesta_2 = []
+    
     for x in letras_unique:
         respuesta_2.append((x,col_0.count(x)))
 
@@ -141,6 +142,7 @@ def pregunta_05():
 
     """
     col_0 = [data[i][0] for i in range(len(data))]
+    col_1 = [int(data[i][1]) for i in range(len(data))]
     letras_unique = sorted(list(set(col_0)))
     respuesta_5 = []
 
@@ -236,8 +238,8 @@ def pregunta_07():
     ]
 
     """
-    col_0
-    col_1
+    col_0 = [data[i][0] for i in range(len(data))]
+    col_1 = [int(data[i][1]) for i in range(len(data))]
     num_unique = list(set(col_1))
     respuesta_7 = []
 
@@ -273,6 +275,8 @@ def pregunta_08():
     ]
 
     """
+    col_0 = [data[i][0] for i in range(len(data))]
+    col_1 = [int(data[i][1]) for i in range(len(data))]
 
     num_unique = list(set(col_1))
     respuesta_8 = []
